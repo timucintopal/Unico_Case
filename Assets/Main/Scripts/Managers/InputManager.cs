@@ -31,9 +31,10 @@ namespace Main.Scripts.Managers
 
         private void Update()
         {
-            if (!Input.GetMouseButtonUp(0) || EventSystem.current.IsPointerOverGameObject())
+            if (EventSystem.current.IsPointerOverGameObject())
                 return;
  
+            Debug.Log("Mouse Click");
             Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
  
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, cellLayer))
