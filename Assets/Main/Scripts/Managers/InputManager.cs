@@ -44,7 +44,4 @@ namespace Main.Scripts.Managers
             }
         }
     }
- 
-
-
 }
