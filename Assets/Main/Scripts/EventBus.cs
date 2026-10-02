@@ -1,18 +1,14 @@
 using System;
+using UnityEngine.Events;
 
 namespace Main.Scripts
 {
-    public interface IEvent { }
-    public readonly struct GameStartRequestedEvent : IEvent { }
-    public static class EventBus<T> where T : struct, IEvent
+    public static class EventBus
     {
-        private static Action<T> handlers;
+        public static UnityAction OnGameStartRequested;
+        public static UnityAction<GameState> OnGameStateChanged;
  
-        public static void Subscribe(Action<T> handler) => handlers += handler;
- 
-        public static void Unsubscribe(Action<T> handler) => handlers -= handler;
- 
-        public static void Publish(T evt) => handlers?.Invoke(evt);
+        public static UnityAction<Cell> OnCellHoverChanged;
+        public static UnityAction<Cell> OnCellReleased;
     }
-
 }

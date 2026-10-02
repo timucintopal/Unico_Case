@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Main.Scripts
@@ -18,6 +19,33 @@ namespace Main.Scripts
         public bool IsPlaceable { get;  private set; }
         public bool IsOccupied { get; private set; }
         public bool CanPlace => IsPlaceable && !IsOccupied;
+
+        private bool _isHovered = false;
+
+        private void OnEnable()
+        {
+            EventBus.OnCellHoverChanged += Hover;
+        }
+
+        private void OnDisable()
+        {
+            EventBus.OnCellHoverChanged -= Hover;
+        }
+
+        void Hover(Cell cell)
+        {
+            if(cell != this)
+            {
+                if (!_isHovered) return;
+                _isHovered = false;
+                RefreshMainColor();
+                return;
+            }
+
+            if (!CanPlace) return;
+            _isHovered = true;
+            _spriteRenderer.color = _cellColorConfig.FillableColor;
+        }
 
         public void Initialize(int column, int row, Vector3 scale, bool isPlaceable)
         {

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,20 +9,19 @@ namespace Main.Scripts.Managers
         
         [SerializeField] private LayerMask cellLayer;
         
-        Cell lastCell;
+        [SerializeField] private Cell lastCell;
 
         private void OnEnable()
         {
-            EventBus<GameStartRequestedEvent>.Subscribe(Reset);
-        }
-        
-        
-        private void OnDisable()
-        {
-            EventBus<GameStartRequestedEvent>.Unsubscribe(Reset);
+            EventBus.OnGameStartRequested += Reset;
         }
 
-        private void Reset(GameStartRequestedEvent obj)
+        private void OnDisable()
+        {
+            EventBus.OnGameStartRequested -= Reset;
+        }
+
+        private void Reset()
         {
             lastCell = null;
         }
@@ -33,27 +31,20 @@ namespace Main.Scripts.Managers
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
- 
-            Debug.Log("Mouse Click");
             Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
  
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, cellLayer))
             {
-                //Debug.Log(hit.collider.gameObject.name);
-                EventBus<CellClickedEvent>.Publish(new CellClickedEvent(hit.collider.gameObject));
+                var newCell = hit.collider.GetComponent<Cell>();
+
+                if (newCell == lastCell) return;
+                Debug.Log("Mouse Click " + hit.collider.name);
+                lastCell = newCell;
+                EventBus.OnCellHoverChanged(lastCell);
             }
         }
     }
  
-    public readonly struct CellClickedEvent : IEvent
-    {
-        public readonly GameObject Cell;
- 
-        public CellClickedEvent(GameObject cell)
-        {
-            Cell = cell;
-        }
-    }
 
 
 }

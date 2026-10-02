@@ -51,7 +51,7 @@ namespace Main.Scripts.UI
         {
             Debug.Log("PLAY PRESSED");
             Hide();
-            EventBus<GameStartRequestedEvent>.Publish(new GameStartRequestedEvent());
+            EventBus.OnGameStartRequested?.Invoke();
         }
     }
 }

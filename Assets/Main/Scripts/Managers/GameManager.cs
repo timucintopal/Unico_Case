@@ -1,4 +1,3 @@
-using System;
 using Main.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,7 +5,7 @@ using UnityEngine.Events;
 namespace Main.Scripts
 {
 
-    public enum State
+    public enum GameState
     {
         MainMenu,
         Game,
@@ -21,7 +20,7 @@ namespace Main.Scripts
 
         BoardGenerator Board { get; set; }
         
-        State currentState = State.MainMenu;
+        GameState _currentGameState = GameState.MainMenu;
 
 
         #region Events
@@ -34,15 +33,15 @@ namespace Main.Scripts
 
         private void OnEnable()
         {
-            EventBus<GameStartRequestedEvent>.Subscribe(StartGame);
+            EventBus.OnGameStartRequested += StartGame;
         }
         
         private void OnDisable()
         {
-            EventBus<GameStartRequestedEvent>.Unsubscribe(StartGame);
+            EventBus.OnGameStartRequested -= StartGame;
         }
 
-        private void StartGame(GameStartRequestedEvent obj)
+        private void StartGame()
         {
             if(Board == null)
                 InitBoard();
