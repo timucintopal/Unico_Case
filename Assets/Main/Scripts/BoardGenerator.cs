@@ -6,14 +6,14 @@ namespace Main.Scripts
     public class BoardGenerator : MonoBehaviour
     {
         [SerializeField] private BoardConfig config;
-        Cell cellPrefab => Resources.Load<Cell>("Props/Cell");
+        Cell CellPrefab => Resources.Load<Cell>("Props/Cell");
 
         private void Start()
         {
             Generate();
         }
 
-        public void Generate()
+        void Generate()
         {
             float step = config.CellSize + config.Spacing;
             float width = config.Columns * config.CellSize + (config.Columns - 1) * config.Spacing;
@@ -30,7 +30,7 @@ namespace Main.Scripts
                 {
                     Vector3 position = firstCellPosition + new Vector3(column * step, 0f, row * step);
                     Vector3 scale = Vector3.one * config.CellSize;
-                    var cell = Instantiate(cellPrefab, position, Quaternion.identity, transform);
+                    var cell = Instantiate(CellPrefab, position, Quaternion.identity, transform);
                     cell.Initialize(column, row, scale, row < config.Rows - config.PlaceableRowCount);
                 }
             }
