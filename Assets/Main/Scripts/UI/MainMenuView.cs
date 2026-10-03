@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,19 +11,35 @@ namespace Main.Scripts.UI
         [SerializeField] Button playButton;
         [SerializeField] CanvasGroup canvasGroup;
         
+        [SerializeField] TextMeshProUGUI levelLabelText;
+        
         private float fadeDuration = 0.4f;
         private Ease fadeEase = Ease.OutQuad;
-
-        Tween fadeTween;
+        private Tween fadeTween;
 
         private void OnEnable()
         {
             playButton.onClick.AddListener(TryStartGame);
+            EventBus.OnGameStateChanged += SwitchView;
         }
 
         private void OnDisable()
         {
             playButton.onClick.RemoveListener(TryStartGame);
+            EventBus.OnGameStateChanged -= SwitchView;
+        }
+
+        private void Awake()
+        {
+            RefreshLevelLabel();
+        }
+
+        void SwitchView(GameState state)
+        {
+            if(state == GameState.Game)
+                Hide();
+            else if(state == GameState.MainMenu)
+                Show();
         }
         
         private void Hide()
@@ -44,13 +61,18 @@ namespace Main.Scripts.UI
                     canvasGroup.interactable = true;
                     canvasGroup.blocksRaycasts = true;
                 });
+
+            RefreshLevelLabel();
         }
 
+        void RefreshLevelLabel()
+        {
+            levelLabelText.text = Constants.LevelLabel + (SaveSystem.LevelIndex + 1);
+        }
 
         void TryStartGame()
         {
             Debug.Log("PLAY PRESSED");
-            Hide();
             EventBus.OnGameStartRequested?.Invoke();
         }
     }

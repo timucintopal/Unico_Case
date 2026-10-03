@@ -10,5 +10,7 @@ namespace Main.Scripts
  
         public static UnityAction<Cell> OnCellHoverChanged;
         public static UnityAction<Cell> OnCellReleased;
+
+        public static UnityAction<DefenceItemData> OnItemDragStarted;
     }
 }

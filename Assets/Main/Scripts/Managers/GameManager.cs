@@ -1,4 +1,5 @@
 using Main.Scripts.Managers;
+using Main.Scripts.ScriptableObject;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,21 +14,25 @@ namespace Main.Scripts
     }
     public class GameManager : MonoBehaviour
     {
-        InputManager InputPrefab => Resources.Load<InputManager>("System/InputManager");
-        BoardGenerator BoardPrefab => Resources.Load<BoardGenerator>("Props/Board");
+        private InputManager InputPrefab => Resources.Load<InputManager>(Constants.InputPrefabPath);
+        private BoardGenerator BoardPrefab => Resources.Load<BoardGenerator>(Constants.BoardPrefabPath);
+        private LevelManager LevelPrefab => Resources.Load<LevelManager>(Constants.LevelManagerPrefabPath);
+        
+        
+        
+        private GameState GameState { get; set; } = GameState.MainMenu;
         
         InputManager InputManager { get; set; }
-
         BoardGenerator Board { get; set; }
+        LevelManager LevelManager { get; set; }
         
         GameState _currentGameState = GameState.MainMenu;
 
-
         #region Events
 
-        public static UnityAction onMenu;
-        public static UnityAction onGame;
-        public static UnityAction onGameOver;
+        public static UnityAction OnMenu;
+        public static UnityAction OnGame;
+        public static UnityAction OnGameOver;
 
         #endregion
 
@@ -43,12 +48,20 @@ namespace Main.Scripts
 
         private void StartGame()
         {
+            if(_currentGameState == GameState.Game) return;
+            _currentGameState = GameState.Game;
+            EventBus.OnGameStateChanged?.Invoke(_currentGameState);
+            
             if(Board == null)
                 InitBoard();
             
             if(InputManager == null)
                 InputManager = Instantiate(InputPrefab);
             
+            if(LevelManager == null)
+            {
+                LevelManager = Instantiate(LevelPrefab);
+            }
         }
         
         void InitBoard()
