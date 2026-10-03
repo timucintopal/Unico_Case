@@ -48,7 +48,10 @@ namespace Main.Scripts.Managers
                 inputManager = Instantiate(inputPrefab);
             
             if(levelManager == null)
+            {
                 levelManager = Instantiate(levelPrefab);
+                levelManager.Init(board);
+            }
         }
 
         private void ChangeState(GameState newState)

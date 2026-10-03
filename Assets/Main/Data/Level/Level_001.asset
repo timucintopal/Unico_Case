@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4e985974e924dd7af27a86cc04802e, type: 3}
   m_Name: Level_001
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  boardConfig: {fileID: 0}
-  spawnInterval: 2
-  defenceItems: []
+  boardConfig: {fileID: 11400000, guid: a544fbd1140854c52a4c738f214c71e6, type: 2}
+  _enemySpawnInterval: 1.75
+  defenceItems:
+  - Item: {fileID: 11400000, guid: e09ee511170fc4c1baee02ef0d81fe60, type: 2}
+    Count: 3
+  - Item: {fileID: 11400000, guid: 0afa9a198b0b54716818c6aa77ae8ef8, type: 2}
+    Count: 4
+  - Item: {fileID: 11400000, guid: 16ad3234543aa456d8cfe18a48a998c9, type: 2}
+    Count: 2
   enemies: []
