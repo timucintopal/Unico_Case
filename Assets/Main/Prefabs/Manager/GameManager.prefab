@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7076856907597566669
+--- !u!1 &606833630185591386
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7581271844022634738}
-  - component: {fileID: 8834178805091103349}
+  - component: {fileID: 650430217074221454}
+  - component: {fileID: 4674965855681343785}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7581271844022634738
+--- !u!4 &650430217074221454
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7076856907597566669}
+  m_GameObject: {fileID: 606833630185591386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 246.94073, y: 318.2711, z: 77.64226}
+  m_LocalPosition: {x: -5.00877, y: 3.95197, z: 2.20371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8834178805091103349
+--- !u!114 &4674965855681343785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7076856907597566669}
+  m_GameObject: {fileID: 606833630185591386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00549f6408d2412b9d9fcb0fa759b23, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b29bc971341e41d99011e480015a514, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Main.Scripts.Managers.LevelManager
-  levelCatalog: {fileID: 0}
-  currentLevelData: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  inputPrefab: {fileID: 6628708621631368292, guid: cba0c9b9030ae482c81b4aa948d67164, type: 3}
+  boardPrefab: {fileID: 3090371622839145085, guid: 7581d62fd782c48bfb86c82ddc36aba0, type: 3}
+  levelPrefab: {fileID: 8834178805091103349, guid: 2d6fa1da501a848a290778507c86d3fa, type: 3}

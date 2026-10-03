@@ -17,11 +17,6 @@ namespace Main.Scripts.Managers
         {
             EventBus.OnGameStateChanged -= HandleGameStateChanged;
         }
-
-        public void Init(LevelCatalog levelCatalog)
-        {
-            this.levelCatalog = levelCatalog;
-        }
         
         private void HandleGameStateChanged(GameState state)
         {
