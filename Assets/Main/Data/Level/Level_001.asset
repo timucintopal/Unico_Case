@@ -21,4 +21,10 @@ MonoBehaviour:
     Count: 4
   - Item: {fileID: 11400000, guid: 16ad3234543aa456d8cfe18a48a998c9, type: 2}
     Count: 2
-  enemies: []
+  enemies:
+  - Enemy: {fileID: 11400000, guid: abb0d9ed1b683472cbdcf9836146b6b0, type: 2}
+    Count: 7
+  - Enemy: {fileID: 11400000, guid: 5d16771dad7b240f682efe76c42c71f4, type: 2}
+    Count: 3
+  - Enemy: {fileID: 11400000, guid: 27710eb2037674b158e8215ce19c9928, type: 2}
+    Count: 5

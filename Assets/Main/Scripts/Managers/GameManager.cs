@@ -49,7 +49,7 @@ namespace Main.Scripts.Managers
             
             if(levelManager == null)
             {
-                levelManager = Instantiate(levelPrefab);
+                levelManager = Instantiate(levelPrefab, Vector3.zero, Quaternion.identity);
                 levelManager.Init(board);
             }
         }

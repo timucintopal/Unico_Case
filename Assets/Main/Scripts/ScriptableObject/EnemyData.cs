@@ -1,3 +1,4 @@
+using Main.Scripts;
 using UnityEngine;
 
 
@@ -7,9 +8,9 @@ public class EnemyData : ScriptableObject
     [SerializeField, Min(1)] private int health = 3;
     [SerializeField, Min(0.01f)] private float speed = 1f;
 
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private Enemy prefab;
 
     public int Health => health;
     public float Speed => speed;
-    public GameObject Prefab => prefab;
+    public Enemy Prefab => prefab;
 }

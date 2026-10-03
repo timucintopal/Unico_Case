@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+namespace Main.Scripts
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Enemy : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private EnemyData data;
+        private BoardGenerator board;
+    
+        public void Init(EnemyData data,Vector3 spawnPosition)
+        {
+            this.data = data;
+            //this.board = board;
+            transform.position = spawnPosition;
+            
+        }
     }
 }
