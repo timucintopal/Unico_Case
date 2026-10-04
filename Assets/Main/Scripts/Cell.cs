@@ -14,7 +14,7 @@ namespace Main.Scripts
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private CellColorConfig cellColorConfig;
 
-        private bool _isHovered;
+        private bool isHovered;
 
         public CellState State { get; private set; }
 
@@ -38,7 +38,7 @@ namespace Main.Scripts
 
         public void SetHover(bool isHovered)
         {
-            _isHovered = isHovered;
+            this.isHovered = isHovered;
             RefreshColor();
         }
 
@@ -55,7 +55,7 @@ namespace Main.Scripts
 
         private Color GetColor()
         {
-            if (_isHovered && State == CellState.Empty)
+            if (isHovered && State == CellState.Empty)
                 return cellColorConfig.FillableColor;
 
             return State switch

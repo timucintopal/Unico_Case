@@ -54,7 +54,7 @@ namespace Main.Scripts.Managers
         public void Init(BoardGenerator boardGenerator)
         {
             board = boardGenerator;
-            enemySpawner.Init(boardGenerator, enemyRegistry);
+            enemySpawner.Init(board, enemyRegistry);
             defenceItemSpawner.Init(enemyRegistry);
         }
 
