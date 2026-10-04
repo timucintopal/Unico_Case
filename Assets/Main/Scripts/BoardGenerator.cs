@@ -7,10 +7,7 @@ namespace Main.Scripts
     public class BoardGenerator : MonoBehaviour
     {
         [SerializeField] private BoardConfig config;
-        Cell CellPrefab => Resources.Load<Cell>("Props/Cell");
-        
-        public int Columns => config.Columns;
-        public int Rows => config.Rows;
+        [SerializeField] private Cell cellPrefab;
         
         private List<Cell> topCells = new List<Cell>();
 
@@ -19,28 +16,16 @@ namespace Main.Scripts
             Generate();
         }
 
-        void Generate()
+        private void Generate()
         {
-            float step = config.CellSize + config.Spacing;
-            float width = config.Columns * config.CellSize + (config.Columns - 1) * config.Spacing;
-            float height = config.Rows * config.CellSize + (config.Rows - 1) * config.Spacing;
- 
-            Vector3 firstCellPosition = transform.position + new Vector3(
-                (config.CellSize - width) * 0.5f,
-                0f,
-                (config.CellSize - height) * 0.5f);
-            
-            topCells.Add(CellPrefab);
- 
+            Vector3 scale = Vector3.one * config.CellSize;
+
             for (int column = 0; column < config.Columns; column++)
             {
                 for (int row = 0; row < config.Rows; row++)
                 {
-                    Vector3 position = firstCellPosition + new Vector3(column * step, 0f, row * step);
-                    Vector3 scale = Vector3.one * config.CellSize;
-                    var cell = Instantiate(CellPrefab, position, Quaternion.identity, transform);
-                    cell.Initialize(column, row, scale, row < config.Rows - config.PlaceableRowCount);
-
+                    var cell = Instantiate(cellPrefab, GridToWorld(column, row), Quaternion.identity, transform);
+                    cell.Initialize(column, row, scale, row < config.PlaceableRowCount);
                     if (row + 1 == config.Rows)
                         topCells.Add(cell);
                 }
@@ -61,6 +46,10 @@ namespace Main.Scripts
             return firstCell + new Vector3(column * step, 0f, row * step);
         }
         
-        public Vector3 GetRandomTopCellPosition() => topCells[UnityEngine.Random.Range(0, topCells.Count)].Position;
+        public (int row, int column) GetRandomCellTopPosition()
+        {
+            var cell = topCells[UnityEngine.Random.Range(0, topCells.Count)];
+            return (cell.Row, cell.Column);
+        }
     }
 }

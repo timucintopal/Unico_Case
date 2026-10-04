@@ -43,7 +43,6 @@ namespace Main.Scripts
             if (timer >= spawnInterval)
             {
                 var enemy = spawnQueue.Dequeue();
-                Debug.Log("Spawning enemy " + enemy.name);
                 timer = 0;
                 Spawn(enemy);
             }
@@ -53,7 +52,10 @@ namespace Main.Scripts
         {
             Debug.Log("ENEMY NAME " + data.Prefab.name);
             Enemy enemy = Instantiate(data.Prefab, transform);
-            enemy.Init(data, board.GetRandomTopCellPosition());
+            // enemy.Init(data, board.GetRandomTopCellPosition());
+            var pos = board.GetRandomCellTopPosition();
+            Debug.Log("Enemy Origin Pos " + pos);
+            enemy.Init(data, board, pos.column, pos.row);
             registry.Add(enemy);
 
         }

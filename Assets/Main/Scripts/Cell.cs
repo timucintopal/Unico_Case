@@ -19,6 +19,11 @@ namespace Main.Scripts
         public bool IsPlaceable { get;  private set; }
         public bool IsOccupied { get; private set; }
         public bool CanPlace => IsPlaceable && !IsOccupied;
+        
+        public int Row { get; private set; }
+        public int Column { get; private set; }
+        
+        
         public Vector3 Position {
             get
             {
@@ -58,6 +63,9 @@ namespace Main.Scripts
         public void Initialize(int column, int row, Vector3 scale, bool isPlaceable)
         {
             IsPlaceable = isPlaceable;
+
+            Row = row;
+            Column = column;
 
             transform.localScale = scale;
             State = IsPlaceable ? CellState.Empty : CellState.Blocked;

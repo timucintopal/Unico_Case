@@ -159,3 +159,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardGenerator
   config: {fileID: 11400000, guid: a544fbd1140854c52a4c738f214c71e6, type: 2}
+  CellPrefab: {fileID: 27498031420007516, guid: cc48f41dea5d54249946638902eb786d, type: 3}

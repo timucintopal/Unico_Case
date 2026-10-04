@@ -18,3 +18,4 @@ MonoBehaviour:
   direction: 0
   prefab: {fileID: 0}
   icon: {fileID: 0}
+  name: Item 0

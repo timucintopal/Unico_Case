@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ebc9113ee684109af513c7f94533f8, type: 3}
   m_Name: DefenceItem_002
   m_EditorClassIdentifier: Assembly-CSharp::DefenceItemData
-  damage: 3
-  range: 4
-  interval: 3
+  damage: 10
+  range: 1
+  interval: 5
   direction: 0
   prefab: {fileID: 0}
   icon: {fileID: 0}
+  name: Item 2
