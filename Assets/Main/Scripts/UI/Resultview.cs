@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Main.Scripts.Managers;
 using TMPro;
 using UnityEngine;
@@ -38,6 +39,7 @@ namespace Main.Scripts.UI
             resultText.color = won ? successColor : failColor;
             resultText.text = won ? Constants.SuccessLabel : Constants.FailLabel;
             panel.SetActive(true);
+            resultText.transform.DOPunchScale(Vector3.one * 0.3f, 0.3f);
         }
 
         private void Hide(GameState state)

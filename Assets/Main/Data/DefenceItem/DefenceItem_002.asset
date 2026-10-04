@@ -16,7 +16,7 @@ MonoBehaviour:
   range: 1
   interval: 5
   direction: 1
-  color: {r: 0.7019608, g: 0.60784316, b: 1, a: 1}
+  color: {r: 0.54509807, g: 0.42352942, b: 0.9647059, a: 1}
   prefab: {fileID: 320744097895905566, guid: 003333c0308bd4a07b0ea18162e1ab4e, type: 3}
   icon: {fileID: 0}
   name: Epic

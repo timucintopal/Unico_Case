@@ -156,7 +156,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.105882354, g: 0.13333334, b: 0.1882353, a: 0}
+  m_BackGroundColor: {r: 0.9019608, g: 0.92941177, b: 0.95686275, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -294,7 +294,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.5
+    m_Strength: 0.2
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -800,58 +800,6 @@ PrefabInstance:
     - target: {fileID: 3445809039584117534, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
       propertyPath: m_Name
       value: CanvasGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 5323145572739694786, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 404.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 5323145572739694786, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 114.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5323145572739694786, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 460.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8212508219735720126, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8212508219735720126, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8212508219735720126, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8212508219735720126, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_fontSize
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
-    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

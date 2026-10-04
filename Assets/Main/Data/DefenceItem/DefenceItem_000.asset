@@ -16,7 +16,7 @@ MonoBehaviour:
   range: 4
   interval: 3
   direction: 0
-  color: {r: 0.37254903, g: 0.8784314, b: 0.9019608, a: 1}
+  color: {r: 0.17254902, g: 0.77254903, b: 0.8117647, a: 1}
   prefab: {fileID: 6095412326865421225, guid: 463d5745aab7e46d4986123e992239a6, type: 3}
   icon: {fileID: 0}
   name: Mini
