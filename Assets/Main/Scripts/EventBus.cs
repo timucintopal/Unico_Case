@@ -67,7 +67,7 @@ namespace Main.Scripts
             OnItemSelected?.Invoke(defenceItemButton);
         }
 
-        public static void RaiseOnLevelEnded(bool won)
+        public static void RaiseLevelEnded(bool won)
         {
             OnLevelEnded?.Invoke(won);
         }

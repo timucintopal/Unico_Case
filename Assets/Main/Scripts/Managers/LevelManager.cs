@@ -19,14 +19,14 @@ namespace Main.Scripts.Managers
         {
             EventBus.OnGameStateChanged += HandleGameStateChanged;
             EventBus.OnEnemyKilled += EnemyKilled;
-            EventBus.OnEnemyReachedBase += EnemyKilled;
+            EventBus.OnEnemyReachedBase += EnemyReachedBase;
         }
 
         private void OnDisable()
         {
             EventBus.OnGameStateChanged -= HandleGameStateChanged;
             EventBus.OnEnemyKilled -= EnemyKilled;
-            EventBus.OnEnemyReachedBase -= EnemyKilled;
+            EventBus.OnEnemyReachedBase -= EnemyReachedBase;
         }
 
         private void EnemyKilled(Enemy enemy)
@@ -48,7 +48,7 @@ namespace Main.Scripts.Managers
 
             enemySpawner.Clear();
             defenceItemSpawner.Clear();
-            EventBus.RaiseOnLevelEnded(won);
+            EventBus.RaiseLevelEnded(won);
         }
 
         public void Init(BoardGenerator boardGenerator)

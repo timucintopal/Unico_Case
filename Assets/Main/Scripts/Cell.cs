@@ -66,7 +66,7 @@ namespace Main.Scripts
             };
         }
 
-        public void Reset()
+        public void Clear()
         {
             State = CellState.Empty;
             RefreshColor();

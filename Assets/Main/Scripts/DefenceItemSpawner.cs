@@ -42,7 +42,7 @@ namespace Main.Scripts
             foreach (var (item, cell) in placed)
             {
                 Pooler.Instance.Release(item);
-                cell.Reset();
+                cell.Clear();
             }
 
             placed.Clear();
