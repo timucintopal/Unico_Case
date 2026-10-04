@@ -42,8 +42,10 @@ namespace Main.Scripts
 
             if (timer >= spawnInterval)
             {
+                var enemy = spawnQueue.Dequeue();
+                Debug.Log("Spawning enemy " + enemy.name);
                 timer = 0;
-                Spawn(spawnQueue.Dequeue());
+                Spawn(enemy);
             }
         }
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Main.Scripts
@@ -12,7 +13,23 @@ namespace Main.Scripts
             this.data = data;
             //this.board = board;
             transform.position = spawnPosition;
-            
         }
+
+        // private void Update()
+        // {
+        //     Move();
+        //
+        //     if (Row <= BaseRow)
+        //     {
+        //         enabled = false;
+        //         EventBus.OnEnemyReachedBase?.Invoke(this);
+        //     }
+        // }
+        //
+        // private void Move()
+        // {
+        //     Row -= data.Speed * Time.deltaTime;
+        //     transform.position = board.GridToWorld(Column, Row);
+        // }
     }
 }

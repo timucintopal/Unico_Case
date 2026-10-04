@@ -19,7 +19,14 @@ namespace Main.Scripts
         public bool IsPlaceable { get;  private set; }
         public bool IsOccupied { get; private set; }
         public bool CanPlace => IsPlaceable && !IsOccupied;
-        public Vector3 Position => transform.position;
+        public Vector3 Position {
+            get
+            {
+                Debug.Log("GET POSITION OF " + gameObject.name); 
+                return transform.position;    
+            }
+            
+        }
 
         private bool _isHovered = false;
 
