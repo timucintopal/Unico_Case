@@ -94,10 +94,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 24
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -273,3 +273,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a843569fdcbc2494682a6765e864283b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DefenceItemButton
+  button: {fileID: 8448237021722938078}
+  text: {fileID: 3259219803833070471}

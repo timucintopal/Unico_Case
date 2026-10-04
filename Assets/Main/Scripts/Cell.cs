@@ -54,12 +54,8 @@ namespace Main.Scripts
         private Color GetColor()
         {
             if (_isHovered && State == CellState.Empty)
-            {
-                Debug.Log("HOVER STATUS CHANGE AT " + name + " 0");
                 return cellColorConfig.FillableColor;
-            }
 
-            Debug.Log("HOVER STATUS CHANGE AT " + name + " 1");
             return State switch
             {
                 CellState.Empty => cellColorConfig.EmptyColor,

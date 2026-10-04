@@ -28,6 +28,7 @@ namespace Main.Scripts.Managers
         {
             board = boardGenerator;
             enemySpawner.Init(boardGenerator, enemyRegistry);
+            
         }
 
         private void HandleGameStateChanged(GameState state)
@@ -36,6 +37,7 @@ namespace Main.Scripts.Managers
             {
                 currentLevelData = levelCatalog.GetLevel(SaveSystem.LevelIndex);
                 enemySpawner.SpawnEnemies(currentLevelData.Enemies, currentLevelData.EnemySpawnInterval);
+                EventBus.RaiseLevelLoaded(currentLevelData);
             }
         }
     }
