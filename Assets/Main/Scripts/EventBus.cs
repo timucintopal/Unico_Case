@@ -21,6 +21,8 @@ namespace Main.Scripts
         public static event Action<Enemy> OnEnemyReachedBase;
 
         public static event Action<bool> OnLevelEnded;
+        
+        public static event Action OnMenuRequested;
 
         public static void RaiseGameStartRequested()
         {
@@ -70,6 +72,11 @@ namespace Main.Scripts
         public static void RaiseLevelEnded(bool won)
         {
             OnLevelEnded?.Invoke(won);
+        }
+        
+        public static void RaiseMenuRequested()
+        {
+            OnMenuRequested?.Invoke();
         }
     }
 }

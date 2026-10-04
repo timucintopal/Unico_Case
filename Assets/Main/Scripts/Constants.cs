@@ -5,5 +5,8 @@ namespace Main.Scripts
         public const string LevelLabel = "Level ";
 
         public const string LevelIndexKey = "LevelIndex";
+        
+        public const string SuccessLabel = "Success";
+        public const string FailLabel = "Fail";
     }
 }

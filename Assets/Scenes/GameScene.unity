@@ -801,6 +801,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasGame
       objectReference: {fileID: 0}
+    - target: {fileID: 5323145572739694786, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 404.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323145572739694786, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 114.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323145572739694786, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 460.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8212508219735720126, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -816,6 +828,30 @@ PrefabInstance:
     - target: {fileID: 8212508219735720126, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130824136156654312, guid: 55a53e82e7c2b4320b41392da3097b7a, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
