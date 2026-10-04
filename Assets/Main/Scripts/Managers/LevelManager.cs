@@ -6,13 +6,13 @@ namespace Main.Scripts.Managers
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private EnemySpawner enemySpawner;
-        
+
         [SerializeField] private BoardGenerator board;
-        
+
         [SerializeField] private LevelCatalog levelCatalog;
         [SerializeField] private LevelData currentLevelData;
-        
-        private readonly EnemyRegistry enemyRegistry = new EnemyRegistry();
+
+        private readonly EnemyRegistry enemyRegistry = new();
 
         private void OnEnable()
         {
@@ -23,13 +23,13 @@ namespace Main.Scripts.Managers
         {
             EventBus.OnGameStateChanged -= HandleGameStateChanged;
         }
-        
+
         public void Init(BoardGenerator boardGenerator)
         {
             board = boardGenerator;
             enemySpawner.Init(boardGenerator, enemyRegistry);
         }
-        
+
         private void HandleGameStateChanged(GameState state)
         {
             if (state == GameState.Game)

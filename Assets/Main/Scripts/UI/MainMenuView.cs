@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using Main.Scripts.Managers;
 using TMPro;
@@ -9,14 +8,19 @@ namespace Main.Scripts.UI
 {
     public class MainMenuView : MonoBehaviour
     {
-        [SerializeField] Button playButton;
-        [SerializeField] CanvasGroup canvasGroup;
-        
-        [SerializeField] TextMeshProUGUI levelLabelText;
-        
-        private float fadeDuration = 0.4f;
-        private Ease fadeEase = Ease.OutQuad;
+        [SerializeField] private Button playButton;
+        [SerializeField] private CanvasGroup canvasGroup;
+
+        [SerializeField] private TextMeshProUGUI levelLabelText;
+
+        private readonly float fadeDuration = 0.4f;
+        private readonly Ease fadeEase = Ease.OutQuad;
         private Tween fadeTween;
+
+        private void Awake()
+        {
+            RefreshLevelLabel();
+        }
 
         private void OnEnable()
         {
@@ -30,28 +34,23 @@ namespace Main.Scripts.UI
             EventBus.OnGameStateChanged -= SwitchView;
         }
 
-        private void Awake()
+        private void SwitchView(GameState state)
         {
-            RefreshLevelLabel();
-        }
-
-        void SwitchView(GameState state)
-        {
-            if(state == GameState.Game)
+            if (state == GameState.Game)
                 Hide();
-            else if(state == GameState.MainMenu)
+            else if (state == GameState.MainMenu)
                 Show();
         }
-        
+
         private void Hide()
         {
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
- 
+
             fadeTween?.Kill();
             fadeTween = canvasGroup.DOFade(0f, fadeDuration).SetEase(fadeEase);
         }
- 
+
         private void Show()
         {
             fadeTween?.Kill();
@@ -66,14 +65,13 @@ namespace Main.Scripts.UI
             RefreshLevelLabel();
         }
 
-        void RefreshLevelLabel()
+        private void RefreshLevelLabel()
         {
             levelLabelText.text = Constants.LevelLabel + (SaveSystem.LevelIndex + 1);
         }
 
-        void TryStartGame()
+        private void TryStartGame()
         {
-            Debug.Log("PLAY PRESSED");
             EventBus.OnGameStartRequested?.Invoke();
         }
     }

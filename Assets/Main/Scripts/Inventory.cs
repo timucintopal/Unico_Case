@@ -4,6 +4,5 @@ namespace Main.Scripts
 {
     public class Inventory : MonoBehaviour
     {
-        
     }
 }

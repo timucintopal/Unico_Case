@@ -22,10 +22,10 @@ namespace Main.Scripts.ScriptableObject
     public class LevelData : UnityEngine.ScriptableObject
     {
         [SerializeField] private BoardConfig boardConfig;
-        [SerializeField, Min(0.1f)] private float _enemySpawnInterval = 2f;
+        [SerializeField] [Min(0.1f)] private float _enemySpawnInterval = 2f;
 
-        [SerializeField] private List<DefenceItemEntry> defenceItems = new List<DefenceItemEntry>();
-        [SerializeField] private List<EnemyEntry> enemies = new List<EnemyEntry>();
+        [SerializeField] private List<DefenceItemEntry> defenceItems = new();
+        [SerializeField] private List<EnemyEntry> enemies = new();
 
         public BoardConfig BoardConfig => boardConfig;
         public IReadOnlyList<DefenceItemEntry> DefenceItems => defenceItems;

@@ -1,21 +1,34 @@
 using System.Collections.Generic;
 using Main.Scripts.ScriptableObject;
-using NUnit.Framework;
 using UnityEngine;
 
 namespace Main.Scripts
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private EnemyRegistry registry;
         [SerializeField] private BoardGenerator board;
 
         [SerializeField] private float spawnInterval;
-        private float timer = 0;
-        
-        private readonly Queue<EnemyData> spawnQueue = new Queue<EnemyData>();
-        
+
+        private readonly Queue<EnemyData> spawnQueue = new();
+        [SerializeField] private EnemyRegistry registry;
+        private float timer;
+
         private bool IsFinished => spawnQueue.Count == 0;
+
+        private void Update()
+        {
+            if (IsFinished) return;
+            timer += Time.deltaTime;
+
+            if (timer >= spawnInterval)
+            {
+                var enemy = spawnQueue.Dequeue();
+                timer = 0;
+                Spawn(enemy);
+            }
+        }
+
         public void Init(BoardGenerator boardGenerator, EnemyRegistry enemyRegistry)
         {
             board = boardGenerator;
@@ -29,55 +42,30 @@ namespace Main.Scripts
             spawnQueue.Clear();
             this.spawnInterval = spawnInterval;
 
-            foreach (var enemyData in SetList(enemyEntry))
-            {
-                spawnQueue.Enqueue(enemyData);
-            }
-        }
-
-        private void Update()
-        {
-            if(IsFinished) return;
-            timer += Time.deltaTime;
-
-            if (timer >= spawnInterval)
-            {
-                var enemy = spawnQueue.Dequeue();
-                timer = 0;
-                Spawn(enemy);
-            }
+            foreach (var enemyData in SetList(enemyEntry)) spawnQueue.Enqueue(enemyData);
         }
 
         private void Spawn(EnemyData data)
         {
-            Debug.Log("ENEMY NAME " + data.Prefab.name);
-            Enemy enemy = Instantiate(data.Prefab, transform);
-            // enemy.Init(data, board.GetRandomTopCellPosition());
-            var pos = board.GetRandomCellTopPosition();
-            Debug.Log("Enemy Origin Pos " + pos);
-            enemy.Init(data, board, pos.column, pos.row);
+            var enemy = Instantiate(data.Prefab, transform);
+            enemy.Init(data, board, board.GetRandomColumn(), board.SpawnRow);
             registry.Add(enemy);
-
         }
 
         private List<EnemyData> SetList(IReadOnlyList<EnemyEntry> entries)
         {
             var list = new List<EnemyData>();
-            foreach (EnemyEntry entry in entries)
-                for (int i = 0; i < entry.Count; i++)
-                {
-                    Debug.Log("ADDED ENEMY " + entry.Enemy.name);
+            foreach (var entry in entries)
+                for (var i = 0; i < entry.Count; i++)
                     list.Add(entry.Enemy);
-                }
- 
-            for (int i = list.Count - 1; i > 0; i--)
+
+            for (var i = list.Count - 1; i > 0; i--)
             {
-                int j = Random.Range(0, i + 1);
+                var j = Random.Range(0, i + 1);
                 (list[i], list[j]) = (list[j], list[i]);
             }
- 
-            return list;
 
+            return list;
         }
     }
 }

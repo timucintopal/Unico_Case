@@ -2,30 +2,30 @@ using UnityEngine;
 
 namespace Main.Scripts.Managers
 {
-
     public enum GameState
     {
         MainMenu,
         Game,
-        GameOver,
+        GameOver
     }
+
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private InputManager inputPrefab ;
+        [SerializeField] private InputManager inputPrefab;
         [SerializeField] private BoardGenerator boardPrefab;
         [SerializeField] private LevelManager levelPrefab;
-        
-        private GameState CurrentState { get; set; } = GameState.MainMenu;
-        
-        private InputManager inputManager;
         private BoardGenerator board;
+
+        private InputManager inputManager;
         private LevelManager levelManager;
-        
+
+        private GameState CurrentState { get; set; } = GameState.MainMenu;
+
         private void OnEnable()
         {
             EventBus.OnGameStartRequested += StartGame;
         }
-        
+
         private void OnDisable()
         {
             EventBus.OnGameStartRequested -= StartGame;
@@ -33,7 +33,7 @@ namespace Main.Scripts.Managers
 
         private void StartGame()
         {
-            if(CurrentState == GameState.Game) return;
+            if (CurrentState == GameState.Game) return;
 
             InitSystem();
             ChangeState(GameState.Game);
@@ -41,13 +41,13 @@ namespace Main.Scripts.Managers
 
         private void InitSystem()
         {
-            if(board == null)
+            if (board == null)
                 board = Instantiate(boardPrefab, Vector3.zero, Quaternion.identity);
-            
-            if(inputManager == null)
+
+            if (inputManager == null)
                 inputManager = Instantiate(inputPrefab);
-            
-            if(levelManager == null)
+
+            if (levelManager == null)
             {
                 levelManager = Instantiate(levelPrefab, Vector3.zero, Quaternion.identity);
                 levelManager.Init(board);
@@ -59,6 +59,5 @@ namespace Main.Scripts.Managers
             CurrentState = newState;
             EventBus.OnGameStateChanged?.Invoke(CurrentState);
         }
-        
     }
 }

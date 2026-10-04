@@ -8,13 +8,12 @@ namespace Main.Scripts.UI
     {
         [SerializeField] private Button _button;
         [SerializeField] private TextMeshProUGUI _text;
-        
-        DefenceItemData _defenceItemData;
 
-        void Initialize(DefenceItemData defenceItemData)
+        private DefenceItemData _defenceItemData;
+
+        private void Initialize(DefenceItemData defenceItemData)
         {
             _defenceItemData = defenceItemData;
         }
-        
     }
 }

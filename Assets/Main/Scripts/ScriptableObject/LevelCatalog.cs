@@ -9,6 +9,10 @@ namespace Main.Scripts.ScriptableObject
         [SerializeField] private List<LevelData> levels;
 
         public int Count => levels.Count;
-        public LevelData GetLevel(int levelIndex) => levels[levelIndex % levels.Count];
+
+        public LevelData GetLevel(int levelIndex)
+        {
+            return levels[levelIndex % levels.Count];
+        }
     }
 }

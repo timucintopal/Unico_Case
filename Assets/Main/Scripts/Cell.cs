@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Main.Scripts
@@ -7,23 +6,24 @@ namespace Main.Scripts
     {
         Empty,
         Blocked,
-        Filled,
+        Filled
     }
+
     public class Cell : MonoBehaviour
     {
-        [SerializeField] SpriteRenderer _spriteRenderer;
-        [SerializeField] CellColorConfig _cellColorConfig;
-        
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private CellColorConfig _cellColorConfig;
+
+        private bool _isHovered;
+
         public CellState State { get; private set; }
-        
-        public bool IsPlaceable { get;  private set; }
+
+        public bool IsPlaceable { get; private set; }
         public bool IsOccupied { get; private set; }
         public bool CanPlace => IsPlaceable && !IsOccupied;
-        
+
         public int Row { get; private set; }
         public int Column { get; private set; }
-
-        private bool _isHovered = false;
 
         private void OnEnable()
         {
@@ -35,9 +35,9 @@ namespace Main.Scripts
             EventBus.OnCellHoverChanged -= Hover;
         }
 
-        void Hover(Cell cell)
+        private void Hover(Cell cell)
         {
-            if(cell != this)
+            if (cell != this)
             {
                 if (!_isHovered) return;
                 _isHovered = false;
@@ -60,13 +60,13 @@ namespace Main.Scripts
             transform.localScale = scale;
             State = IsPlaceable ? CellState.Empty : CellState.Blocked;
             name = $"Cell ({column}, {row})";
-            
+
             RefreshMainColor();
         }
 
-        void RefreshMainColor()
+        private void RefreshMainColor()
         {
-            _spriteRenderer.color = IsPlaceable ?  _cellColorConfig.EmptyColor : _cellColorConfig.BlockedColor;
+            _spriteRenderer.color = IsPlaceable ? _cellColorConfig.EmptyColor : _cellColorConfig.BlockedColor;
         }
     }
 }

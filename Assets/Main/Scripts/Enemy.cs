@@ -5,16 +5,15 @@ namespace Main.Scripts
 {
     public class Enemy : MonoBehaviour
     {
+        private const float BaseRow = -0.5f;
         [SerializeField] private Transform model;
+        private BoardGenerator board;
+
+        private EnemyData data;
+        private int health;
 
         private Vector3 scale;
-        
-        private const float BaseRow = -0.5f;
- 
-        private EnemyData data;
-        private BoardGenerator board;
-        private int health;
- 
+
         public int Column { get; private set; }
         public float Row { get; private set; }
         public bool IsAlive => health > 0;
@@ -22,6 +21,14 @@ namespace Main.Scripts
         private void Awake()
         {
             scale = model.localScale;
+        }
+
+        private void Update()
+        {
+            Move();
+
+            if (Row <= BaseRow) enabled = false;
+            // EventBus.OnEnemyReachedBase?.Invoke(this);
         }
 
         public void Init(EnemyData enemyData, BoardGenerator boardGenerator, int column, float startRow)
@@ -36,41 +43,26 @@ namespace Main.Scripts
             SpawnEffect();
         }
 
-        void SpawnEffect()
+        private void SpawnEffect()
         {
             model.localScale = Vector3.zero;
-            model.DOScale(scale, .2f ).SetEase(Ease.OutBounce);
+            model.DOScale(scale, .2f).SetEase(Ease.OutBounce);
         }
- 
-        private void Update()
-        {
-            Move();
- 
-            if (Row <= BaseRow)
-            {
-                enabled = false;
-                // EventBus.OnEnemyReachedBase?.Invoke(this);
-            }
-        }
- 
+
         private void Move()
         {
             Row -= data.Speed * Time.deltaTime;
             transform.position = board.GridToWorld(Column, Row);
         }
- 
+
         public void TakeDamage(int amount)
         {
             if (!IsAlive)
                 return;
- 
+
             health -= amount;
-            if (!IsAlive)
-            {
-                enabled = false;
-                // EventBus.OnEnemyKilled?.Invoke(this);
-            }
+            if (!IsAlive) enabled = false;
+            // EventBus.OnEnemyKilled?.Invoke(this);
         }
     }
-
 }
