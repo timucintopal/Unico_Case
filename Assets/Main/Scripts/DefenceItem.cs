@@ -35,6 +35,7 @@ namespace Main.Scripts
 
             timer = 0f;
             Pooler.Instance.Get(bulletPrefab, muzzle.position).Init(target, data.Damage);
+            if (data.Direction == AttackDirection.All) LookAtTarget(target.transform);
             Recoil();
         }
 
@@ -44,8 +45,10 @@ namespace Main.Scripts
             registry = enemyRegistry;
             column = cell.Column;
             row = cell.Row;
-
             timer = data.Interval;
+
+            if (itemData.Direction == AttackDirection.All)
+                muzzle.rotation = Quaternion.identity;
         }
 
         private Enemy FindTarget()
@@ -78,10 +81,17 @@ namespace Main.Scripts
             return Mathf.Max(Mathf.Abs(rowDelta), columnDelta) <= data.Range;
         }
 
+        private void LookAtTarget(Transform target)
+        {
+            var direction = target.transform.position - muzzle.position;
+            direction.y = 0f;
+            muzzle.rotation = Quaternion.LookRotation(direction);
+        }
+
         private void Recoil()
         {
             muzzle.DOKill(true);
-            muzzle.DOLocalMoveZ(-RecoilDistance, RecoilDuration)
+            muzzle.DOLocalMove(muzzle.localRotation * Vector3.back * RecoilDistance, RecoilDuration)
                 .SetRelative()
                 .SetEase(Ease.OutQuad)
                 .SetLoops(2, LoopType.Yoyo);
