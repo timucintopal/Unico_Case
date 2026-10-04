@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Main.Scripts.Managers.LevelManager
   enemySpawner: {fileID: 4858754854324024210}
+  defenceItemSpawner: {fileID: 5792579083114469357}
   board: {fileID: 0}
   levelCatalog: {fileID: 11400000, guid: 55702749a95d544d0844942c5ca51cef, type: 2}
   currentLevelData: {fileID: 0}

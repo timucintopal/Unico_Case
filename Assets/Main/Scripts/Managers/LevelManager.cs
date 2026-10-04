@@ -6,6 +6,7 @@ namespace Main.Scripts.Managers
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private EnemySpawner enemySpawner;
+        [SerializeField] private DefenceItemSpawner defenceItemSpawner;
 
         [SerializeField] private BoardGenerator board;
 
@@ -28,7 +29,7 @@ namespace Main.Scripts.Managers
         {
             board = boardGenerator;
             enemySpawner.Init(boardGenerator, enemyRegistry);
-            
+            defenceItemSpawner.Init(enemyRegistry);
         }
 
         private void HandleGameStateChanged(GameState state)
