@@ -16,6 +16,7 @@ MonoBehaviour:
   range: 2
   interval: 4
   direction: 0
+  color: {r: 0.3019608, g: 0.6156863, b: 1, a: 1}
   prefab: {fileID: 2702252046105442733, guid: 33eb6e5d85f004364898b72baf06fc8f, type: 3}
   icon: {fileID: 0}
   name: Item 1

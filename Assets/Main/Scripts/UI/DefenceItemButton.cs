@@ -8,8 +8,9 @@ namespace Main.Scripts.UI
     public class DefenceItemButton : MonoBehaviour, IPointerDownHandler
     {
         [SerializeField] private Button button;
+        [SerializeField] private Image background;
         [SerializeField] private TextMeshProUGUI text;
-
+        
         private int count;
 
         public DefenceItemData Data { get; private set; }
@@ -18,6 +19,7 @@ namespace Main.Scripts.UI
         {
             Data = defenceItemData;
             this.count = count;
+            background.color = Data.Color;
             RefreshStatus();
         }
 
