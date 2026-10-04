@@ -9,8 +9,8 @@ namespace Main.Scripts.UI
     {
         [SerializeField] private Button button;
         [SerializeField] private Image background;
-        [SerializeField] private TextMeshProUGUI text;
-        
+        [SerializeField] private TextMeshProUGUI nameText;
+        [SerializeField] private TextMeshProUGUI countText;
         private int count;
 
         public DefenceItemData Data { get; private set; }
@@ -20,6 +20,7 @@ namespace Main.Scripts.UI
             Data = defenceItemData;
             this.count = count;
             background.color = Data.Color;
+            nameText.text = Data.Name;
             RefreshStatus();
         }
 
@@ -37,7 +38,7 @@ namespace Main.Scripts.UI
 
         private void RefreshStatus()
         {
-            text.text = $"{Data.Name} x{count}";
+            countText.text = count.ToString();
             button.interactable = count > 0;
         }
     }

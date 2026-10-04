@@ -14,7 +14,6 @@ public class DefenceItemData : ScriptableObject
     [SerializeField] [Min(1)] private int range = 4;
     [SerializeField] [Min(0.1f)] private float interval = 3f;
     [SerializeField] private AttackDirection direction = AttackDirection.Forward;
-    
     [SerializeField] private Color color = Color.white;
 
     [SerializeField] private DefenceItem prefab;
@@ -28,6 +27,5 @@ public class DefenceItemData : ScriptableObject
     public DefenceItem Prefab => prefab;
     public Sprite Icon => icon;
     public string Name => name;
-    
     public Color Color => color;
 }
