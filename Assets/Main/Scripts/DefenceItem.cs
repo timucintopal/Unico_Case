@@ -8,15 +8,15 @@ namespace Main.Scripts
     {
         [SerializeField] private Bullet bulletPrefab;
         [SerializeField] private Transform muzzle;
-        
-        
+
+
         private DefenceItemData data;
         private EnemyRegistry registry;
 
         private int column;
         private int row;
         private float timer;
-        
+
         private const float RecoilDistance = 0.15f;
         private const float RecoilDuration = 0.08f;
 
@@ -24,7 +24,7 @@ namespace Main.Scripts
         {
             muzzle.DOKill();
         }
-        
+
         private void Update()
         {
             timer += Time.deltaTime;
@@ -44,7 +44,7 @@ namespace Main.Scripts
             registry = enemyRegistry;
             column = cell.Column;
             row = cell.Row;
-            
+
             timer = data.Interval;
         }
 
@@ -77,7 +77,7 @@ namespace Main.Scripts
 
             return Mathf.Max(Mathf.Abs(rowDelta), columnDelta) <= data.Range;
         }
-        
+
         private void Recoil()
         {
             muzzle.DOKill(true);
@@ -86,6 +86,5 @@ namespace Main.Scripts
                 .SetEase(Ease.OutQuad)
                 .SetLoops(2, LoopType.Yoyo);
         }
-        
     }
 }

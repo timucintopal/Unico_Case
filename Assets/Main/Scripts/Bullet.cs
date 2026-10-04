@@ -9,12 +9,12 @@ namespace Main.Scripts
 
         private Enemy target;
         private int damage;
-        
+
         private void OnEnable()
         {
             trail.Clear();
         }
-        
+
         private void Update()
         {
             if (target == null || !target.IsAlive)
@@ -32,7 +32,7 @@ namespace Main.Scripts
             target.TakeDamage(damage);
             Pooler.Instance.Release(this);
         }
-        
+
         public void Init(Enemy enemy, int damageAmount)
         {
             target = enemy;

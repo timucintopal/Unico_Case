@@ -25,7 +25,7 @@ namespace Main.Scripts
             item.SetActive(true);
             return item.GetComponent<T>();
         }
-        
+
         public void Release(Component item)
         {
             item.gameObject.SetActive(false);

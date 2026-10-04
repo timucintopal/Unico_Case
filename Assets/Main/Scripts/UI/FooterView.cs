@@ -9,13 +9,14 @@ namespace Main.Scripts.UI
     {
         [SerializeField] private Transform buttonParent;
         [SerializeField] private DefenceItemButton buttonPrefab;
-        
+
         private readonly List<DefenceItemButton> buttons = new();
 
         private void OnEnable()
         {
             EventBus.OnLevelLoaded += Build;
         }
+
         private void OnDisable()
         {
             EventBus.OnLevelLoaded -= Build;

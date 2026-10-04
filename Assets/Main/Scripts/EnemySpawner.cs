@@ -38,7 +38,6 @@ namespace Main.Scripts
         public void SpawnEnemies(IReadOnlyList<EnemyEntry> enemyEntry, float spawnInterval)
         {
             timer = 0;
-            registry.Clear();
             spawnQueue.Clear();
             this.spawnInterval = spawnInterval;
 
@@ -67,7 +66,7 @@ namespace Main.Scripts
 
             return list;
         }
-        
+
         public void Clear()
         {
             spawnQueue.Clear();

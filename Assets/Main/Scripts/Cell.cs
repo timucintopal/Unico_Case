@@ -20,9 +20,9 @@ namespace Main.Scripts
 
         public int Row { get; private set; }
         public int Column { get; private set; }
-        
-        public bool CanPlace => State == CellState.Empty ;
-        
+
+        public bool CanPlace => State == CellState.Empty;
+
         public void Initialize(int column, int row, Vector3 scale, bool isPlaceable)
         {
             Row = row;
@@ -30,12 +30,12 @@ namespace Main.Scripts
 
             transform.localScale = scale;
             State = isPlaceable ? CellState.Empty : CellState.Blocked;
-            
+
             name = "Cell_" + column + "_" + row;
 
             RefreshColor();
         }
-        
+
         public void SetHover(bool isHovered)
         {
             _isHovered = isHovered;

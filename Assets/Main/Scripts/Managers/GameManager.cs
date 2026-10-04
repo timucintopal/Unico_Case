@@ -66,7 +66,5 @@ namespace Main.Scripts.Managers
             CurrentState = newState;
             EventBus.RaiseGameStateChanged(CurrentState);
         }
-        
-        
     }
 }

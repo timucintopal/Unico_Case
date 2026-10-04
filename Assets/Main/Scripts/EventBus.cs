@@ -46,10 +46,10 @@ namespace Main.Scripts
         {
             OnItemDragStarted?.Invoke(button);
         }
-        
+
         public static void RaiseItemDropped(DefenceItemButton button, Cell cell)
         {
-            OnItemDropped?.Invoke(button,cell);
+            OnItemDropped?.Invoke(button, cell);
         }
 
         public static void RaiseEnemyKilled(Enemy enemy)

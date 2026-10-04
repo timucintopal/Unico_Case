@@ -7,7 +7,7 @@ namespace Main.Scripts
     public class DefenceItemSpawner : MonoBehaviour
     {
         private EnemyRegistry registry;
-        
+
         private readonly Dictionary<DefenceItem, Cell> placed = new();
 
         private void OnEnable()

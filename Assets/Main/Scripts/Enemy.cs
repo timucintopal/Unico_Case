@@ -6,9 +6,9 @@ namespace Main.Scripts
     public class Enemy : MonoBehaviour
     {
         private const float BaseRow = -0.5f;
-        
+
         [SerializeField] private EnemyVisual visual;
-        
+
         private BoardGenerator board;
         private EnemyData data;
         private int health;
@@ -61,6 +61,5 @@ namespace Main.Scripts
             EventBus.RaiseEnemyKilled(this);
             visual.PlayDeath(() => Destroy(gameObject));
         }
-        
     }
 }

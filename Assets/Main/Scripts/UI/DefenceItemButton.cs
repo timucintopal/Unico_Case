@@ -20,13 +20,13 @@ namespace Main.Scripts.UI
             this.count = count;
             RefreshStatus();
         }
-        
+
         public void OnPointerDown(PointerEventData eventData)
         {
             if (count > 0)
                 EventBus.RaiseItemDragStarted(this);
         }
-        
+
         public void Consume()
         {
             count--;
@@ -38,7 +38,5 @@ namespace Main.Scripts.UI
             text.text = $"{Data.Name} x{count}";
             button.interactable = count > 0;
         }
-
-        
     }
 }

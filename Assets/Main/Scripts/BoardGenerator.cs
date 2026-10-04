@@ -8,7 +8,7 @@ namespace Main.Scripts
         [SerializeField] private BoardConfig config;
         [SerializeField] private Cell cellPrefab;
 
-        
+
         public int SpawnRow => config.Rows;
 
         private void Start()
@@ -41,7 +41,7 @@ namespace Main.Scripts
 
             return firstCell + new Vector3(column * step, 0f, row * step);
         }
-        
+
 
         public int GetRandomColumn()
         {

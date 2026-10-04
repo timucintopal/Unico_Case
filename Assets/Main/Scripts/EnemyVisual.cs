@@ -39,7 +39,7 @@ namespace Main.Scripts
             material.DOKill(true);
             material.DOColor(Color.white, FlashDuration).SetLoops(2, LoopType.Yoyo);
         }
-        
+
         public void PlayDeath(TweenCallback onComplete)
         {
             model.DOKill();

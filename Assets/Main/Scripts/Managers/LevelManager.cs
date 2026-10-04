@@ -32,11 +32,11 @@ namespace Main.Scripts.Managers
         private void EnemyKilled(Enemy enemy)
         {
             enemyRegistry.Remove(enemy);
-            
-            if(enemySpawner.IsFinished && enemyRegistry.Count == 0)
+
+            if (enemySpawner.IsFinished && enemyRegistry.Count == 0)
                 EndLevel(true);
         }
-        
+
         private void EnemyReachedBase(Enemy enemy)
         {
             EndLevel(false);

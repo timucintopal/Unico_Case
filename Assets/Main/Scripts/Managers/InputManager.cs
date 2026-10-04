@@ -1,4 +1,3 @@
-using System;
 using Main.Scripts.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,7 +10,7 @@ namespace Main.Scripts.Managers
 
         private Camera mainCamera;
         private Plane boardPlane = new(Vector3.up, Vector3.zero);
-        
+
         [SerializeField] private DefenceItemButton draggedButton;
         [SerializeField] private DefenceItem preview;
         [SerializeField] private Cell hoveredCell;
@@ -25,7 +24,7 @@ namespace Main.Scripts.Managers
         {
             EventBus.OnItemDragStarted += StartDrag;
         }
-        
+
         private void OnDisable()
         {
             EventBus.OnItemDragStarted -= StartDrag;
@@ -33,7 +32,7 @@ namespace Main.Scripts.Managers
 
         private void Update()
         {
-            if(draggedButton != null)
+            if (draggedButton != null)
                 UpdateDrag();
         }
 
@@ -56,7 +55,7 @@ namespace Main.Scripts.Managers
             if (Input.GetMouseButtonUp(0))
                 EndDrag(cell);
         }
-        
+
         private void EndDrag(Cell cell)
         {
             Destroy(preview.gameObject);
@@ -67,7 +66,7 @@ namespace Main.Scripts.Managers
 
             draggedButton = null;
         }
-        
+
         private Cell GetCell(Ray ray)
         {
             if (EventSystem.current.IsPointerOverGameObject())
@@ -77,18 +76,13 @@ namespace Main.Scripts.Managers
                 ? hit.collider.GetComponent<Cell>()
                 : null;
         }
-        
+
         private void MovePreview(Ray ray, Cell cell)
         {
             if (cell != null && cell.CanPlace)
                 preview.transform.position = cell.transform.position;
             else if (boardPlane.Raycast(ray, out var distance))
                 preview.transform.position = ray.GetPoint(distance);
-        }
-
-        private void Reset()
-        {
-            SetHoveredCell(null);
         }
 
         private void SetHoveredCell(Cell cell)
