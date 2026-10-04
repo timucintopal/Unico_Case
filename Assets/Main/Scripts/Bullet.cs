@@ -26,8 +26,9 @@ namespace Main.Scripts
             var destination = target.transform.position;
             destination.y = transform.position.y;
 
-            transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-            if (transform.position != destination) return;
+            var position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+            transform.position = position;
+            if (position != destination) return;
 
             target.TakeDamage(damage);
             Pooler.Instance.Release(this);
