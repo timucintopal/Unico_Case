@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Main.Scripts.Main.Scripts;
 using UnityEngine;
 
 namespace Main.Scripts
@@ -6,9 +7,10 @@ namespace Main.Scripts
     public class Enemy : MonoBehaviour
     {
         private const float BaseRow = -0.5f;
-        [SerializeField] private Transform model;
+        
+        [SerializeField] private EnemyVisual visual;
+        
         private BoardGenerator board;
-
         private EnemyData data;
         private int health;
 
@@ -17,11 +19,6 @@ namespace Main.Scripts
         public int Column { get; private set; }
         public float Row { get; private set; }
         public bool IsAlive => health > 0;
-
-        private void Awake()
-        {
-            scale = model.localScale;
-        }
 
         private void Update()
         {
@@ -42,13 +39,7 @@ namespace Main.Scripts
             Row = startRow;
             transform.position = board.GridToWorld(Column, Row);
 
-            SpawnEffect();
-        }
-
-        private void SpawnEffect()
-        {
-            model.localScale = Vector3.zero;
-            model.DOScale(scale, .2f).SetEase(Ease.OutBounce);
+            visual.PlaySpawn();
         }
 
         private void Move()
@@ -62,11 +53,15 @@ namespace Main.Scripts
             if (!IsAlive) return;
 
             health -= amount;
-            if (IsAlive) return;
+            if (IsAlive)
+            {
+                visual.PlayHit();
+                return;
+            }
 
             enabled = false;
             EventBus.RaiseEnemyKilled(this);
         }
-
+        
     }
 }
