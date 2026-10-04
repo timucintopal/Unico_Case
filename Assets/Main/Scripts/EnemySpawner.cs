@@ -14,7 +14,7 @@ namespace Main.Scripts
         [SerializeField] private EnemyRegistry registry;
         private float timer;
 
-        private bool IsFinished => spawnQueue.Count == 0;
+        public bool IsFinished => spawnQueue.Count == 0;
 
         private void Update()
         {
@@ -66,6 +66,16 @@ namespace Main.Scripts
             }
 
             return list;
+        }
+        
+        public void Clear()
+        {
+            spawnQueue.Clear();
+
+            foreach (var enemy in registry.Enemies)
+                Destroy(enemy.gameObject);
+
+            registry.Clear();
         }
     }
 }

@@ -65,5 +65,11 @@ namespace Main.Scripts
                 _ => cellColorConfig.BlockedColor
             };
         }
+
+        public void Reset()
+        {
+            State = CellState.Empty;
+            RefreshColor();
+        }
     }
 }

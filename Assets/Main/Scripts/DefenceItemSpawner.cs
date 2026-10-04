@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Main.Scripts.UI;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace Main.Scripts
     public class DefenceItemSpawner : MonoBehaviour
     {
         private EnemyRegistry registry;
+        
+        private readonly Dictionary<DefenceItem, Cell> placed = new();
 
         private void OnEnable()
         {
@@ -30,8 +33,19 @@ namespace Main.Scripts
             var item = Pooler.Instance.Get(data.Prefab, cell.transform.position);
             item.Init(data, registry, cell);
             cell.Occupy();
-
+            placed[item] = cell;
             button.Consume();
+        }
+
+        public void Clear()
+        {
+            foreach (var (item, cell) in placed)
+            {
+                Pooler.Instance.Release(item);
+                cell.Reset();
+            }
+
+            placed.Clear();
         }
     }
 }

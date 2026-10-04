@@ -18,20 +18,37 @@ namespace Main.Scripts.Managers
         private void OnEnable()
         {
             EventBus.OnGameStateChanged += HandleGameStateChanged;
-            EventBus.OnEnemyKilled += RemoveEnemy;
-            EventBus.OnEnemyReachedBase += RemoveEnemy;
+            EventBus.OnEnemyKilled += EnemyKilled;
+            EventBus.OnEnemyReachedBase += EnemyKilled;
         }
 
         private void OnDisable()
         {
             EventBus.OnGameStateChanged -= HandleGameStateChanged;
-            EventBus.OnEnemyKilled -= RemoveEnemy;
-            EventBus.OnEnemyReachedBase -= RemoveEnemy;
+            EventBus.OnEnemyKilled -= EnemyKilled;
+            EventBus.OnEnemyReachedBase -= EnemyKilled;
         }
 
-        private void RemoveEnemy(Enemy enemy)
+        private void EnemyKilled(Enemy enemy)
         {
             enemyRegistry.Remove(enemy);
+            
+            if(enemySpawner.IsFinished && enemyRegistry.Count == 0)
+                EndLevel(true);
+        }
+        
+        private void EnemyReachedBase(Enemy enemy)
+        {
+            EndLevel(false);
+        }
+
+        private void EndLevel(bool won)
+        {
+            if (won) SaveSystem.LevelIndex++;
+
+            enemySpawner.Clear();
+            defenceItemSpawner.Clear();
+            EventBus.RaiseOnLevelEnded(won);
         }
 
         public void Init(BoardGenerator boardGenerator)

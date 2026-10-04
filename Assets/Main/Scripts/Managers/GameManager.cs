@@ -24,11 +24,13 @@ namespace Main.Scripts.Managers
         private void OnEnable()
         {
             EventBus.OnGameStartRequested += StartGame;
+            EventBus.OnLevelEnded += EndGame;
         }
 
         private void OnDisable()
         {
             EventBus.OnGameStartRequested -= StartGame;
+            EventBus.OnLevelEnded -= EndGame;
         }
 
         private void StartGame()
@@ -54,10 +56,17 @@ namespace Main.Scripts.Managers
             }
         }
 
+        private void EndGame(bool won)
+        {
+            ChangeState(GameState.MainMenu);
+        }
+
         private void ChangeState(GameState newState)
         {
             CurrentState = newState;
             EventBus.RaiseGameStateChanged(CurrentState);
         }
+        
+        
     }
 }
