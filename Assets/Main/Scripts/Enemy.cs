@@ -28,6 +28,7 @@ namespace Main.Scripts
 
             enabled = false;
             EventBus.RaiseEnemyReachedBase(this);
+            // Destroy(gameObject);
         }
 
         public void Init(EnemyData enemyData, BoardGenerator boardGenerator, int column, float startRow)
@@ -53,14 +54,13 @@ namespace Main.Scripts
             if (!IsAlive) return;
 
             health -= amount;
+            visual.PlayHit();
             if (IsAlive)
-            {
-                visual.PlayHit();
                 return;
-            }
 
             enabled = false;
             EventBus.RaiseEnemyKilled(this);
+            visual.PlayDeath(() => Destroy(gameObject));
         }
         
     }

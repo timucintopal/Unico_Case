@@ -32,7 +32,6 @@ namespace Main.Scripts.Managers
         private void RemoveEnemy(Enemy enemy)
         {
             enemyRegistry.Remove(enemy);
-            Destroy(enemy.gameObject);
         }
 
         public void Init(BoardGenerator boardGenerator)

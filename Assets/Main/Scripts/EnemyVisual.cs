@@ -9,6 +9,7 @@ namespace Main.Scripts
         {
             private const float SpawnDuration = 0.2f;
             private const float FlashDuration = 0.08f;
+            private const float DeathDuration = 0.25f;
 
             [SerializeField] private Transform model;
             [SerializeField] private Renderer modelRenderer;
@@ -39,6 +40,14 @@ namespace Main.Scripts
             {
                 material.DOKill(true);
                 material.DOColor(Color.white, FlashDuration).SetLoops(2, LoopType.Yoyo);
+            }
+            
+            public void PlayDeath(TweenCallback onComplete)
+            {
+                model.DOKill();
+                model.DOScale(Vector3.zero, DeathDuration)
+                    .SetEase(Ease.InBack)
+                    .OnComplete(onComplete);
             }
         }
     }
