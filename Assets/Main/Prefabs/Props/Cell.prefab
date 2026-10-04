@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3807cdf8e369f4aa693ab1f1c5a65440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cell
-  _spriteRenderer: {fileID: 2873070290706936892}
-  _cellColorConfig: {fileID: 11400000, guid: 72381a717fb994ff3ae5d8cae1597e77, type: 2}
+  spriteRenderer: {fileID: 2873070290706936892}
+  cellColorConfig: {fileID: 11400000, guid: 72381a717fb994ff3ae5d8cae1597e77, type: 2}
 --- !u!65 &6432559223987080379
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d448fdfa0e4cf4b9eb0ea33bf74cd843, type: 3}
   m_Name: CellColorConfig
   m_EditorClassIdentifier: Assembly-CSharp::CellColorConfig
-  emptyColor: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
-  blockedColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
-  fillableColor: {r: 0.66180134, g: 0.9811321, b: 0.66180134, a: 1}
-  filledColor: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
+  emptyColor: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 0.2}
+  blockedColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.2}
+  fillableColor: {r: 0.66180134, g: 0.9811321, b: 0.66180134, a: 0.2}
+  filledColor: {r: 1, g: 0.4764151, b: 0.4764151, a: 0.2}

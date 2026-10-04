@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,39 +8,49 @@ namespace Main.Scripts.Managers
     {
         [SerializeField] private LayerMask cellLayer;
 
-        [SerializeField] private Cell lastCell;
-        private Camera MainCamera => Camera.main;
+        private Camera mainCamera;
+        [SerializeField] private Cell hoveredCell;
+
+        private void Awake()
+        {
+            mainCamera = Camera.main;
+        }
+
 
         private void Reset()
         {
-            lastCell = null;
+            SetHoveredCell(null);
         }
-
-
+        
         private void Update()
         {
+            var cell = GetCellUnderPointer();
+            SetHoveredCell(cell);
+
+            if (cell != null && Input.GetMouseButtonDown(0))
+                EventBus.RaiseCellClicked(cell);
+        }
+        
+        private Cell GetCellUnderPointer()
+        {
             if (EventSystem.current.IsPointerOverGameObject())
-                return;
-            var ray = MainCamera.ScreenPointToRay(Input.mousePosition);
+                return null;
 
-            if (Physics.Raycast(ray, out var hit, Mathf.Infinity, cellLayer))
-            {
-                var newCell = hit.collider.GetComponent<Cell>();
+            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-                if (newCell == lastCell) return;
-                lastCell = newCell;
-                EventBus.OnCellHoverChanged(lastCell);
-            }
+            return Physics.Raycast(ray, out var hit, Mathf.Infinity, cellLayer)
+                ? hit.collider.GetComponent<Cell>()
+                : null;
         }
 
-        private void OnEnable()
-        {
-            EventBus.OnGameStartRequested += Reset;
-        }
 
-        private void OnDisable()
+        private void SetHoveredCell(Cell cell)
         {
-            EventBus.OnGameStartRequested -= Reset;
+            if (cell == hoveredCell) return;
+
+            if (hoveredCell != null) hoveredCell.SetHover(false);
+            hoveredCell = cell;
+            if (hoveredCell != null) hoveredCell.SetHover(true);
         }
     }
 }

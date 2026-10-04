@@ -57,7 +57,7 @@ namespace Main.Scripts.Managers
         private void ChangeState(GameState newState)
         {
             CurrentState = newState;
-            EventBus.OnGameStateChanged?.Invoke(CurrentState);
+            EventBus.RaiseGameStateChanged(CurrentState);
         }
     }
 }

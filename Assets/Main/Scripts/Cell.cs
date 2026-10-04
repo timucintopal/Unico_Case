@@ -11,62 +11,61 @@ namespace Main.Scripts
 
     public class Cell : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private CellColorConfig _cellColorConfig;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private CellColorConfig cellColorConfig;
 
         private bool _isHovered;
 
         public CellState State { get; private set; }
 
-        public bool IsPlaceable { get; private set; }
-        public bool IsOccupied { get; private set; }
-        public bool CanPlace => IsPlaceable && !IsOccupied;
-
         public int Row { get; private set; }
         public int Column { get; private set; }
-
-        private void OnEnable()
-        {
-            EventBus.OnCellHoverChanged += Hover;
-        }
-
-        private void OnDisable()
-        {
-            EventBus.OnCellHoverChanged -= Hover;
-        }
-
-        private void Hover(Cell cell)
-        {
-            if (cell != this)
-            {
-                if (!_isHovered) return;
-                _isHovered = false;
-                RefreshMainColor();
-                return;
-            }
-
-            if (!CanPlace) return;
-            _isHovered = true;
-            _spriteRenderer.color = _cellColorConfig.FillableColor;
-        }
-
+        
         public void Initialize(int column, int row, Vector3 scale, bool isPlaceable)
         {
-            IsPlaceable = isPlaceable;
-
             Row = row;
             Column = column;
 
             transform.localScale = scale;
-            State = IsPlaceable ? CellState.Empty : CellState.Blocked;
-            name = $"Cell ({column}, {row})";
+            State = isPlaceable ? CellState.Empty : CellState.Blocked;
+            
+            name = "Cell_" + column + "_" + row;
 
-            RefreshMainColor();
+            RefreshColor();
+        }
+        
+        public void SetHover(bool isHovered)
+        {
+            _isHovered = isHovered;
+            RefreshColor();
         }
 
-        private void RefreshMainColor()
+        public void Occupy()
         {
-            _spriteRenderer.color = IsPlaceable ? _cellColorConfig.EmptyColor : _cellColorConfig.BlockedColor;
+            State = CellState.Filled;
+            RefreshColor();
+        }
+
+        private void RefreshColor()
+        {
+            spriteRenderer.color = GetColor();
+        }
+
+        private Color GetColor()
+        {
+            if (_isHovered && State == CellState.Empty)
+            {
+                Debug.Log("HOVER STATUS CHANGE AT " + name + " 0");
+                return cellColorConfig.FillableColor;
+            }
+
+            Debug.Log("HOVER STATUS CHANGE AT " + name + " 1");
+            return State switch
+            {
+                CellState.Empty => cellColorConfig.EmptyColor,
+                CellState.Filled => cellColorConfig.FilledColor,
+                _ => cellColorConfig.BlockedColor
+            };
         }
     }
 }

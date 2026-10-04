@@ -72,7 +72,7 @@ namespace Main.Scripts.UI
 
         private void TryStartGame()
         {
-            EventBus.OnGameStartRequested?.Invoke();
+            EventBus.RaiseGameStartRequested();
         }
     }
 }
