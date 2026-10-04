@@ -27,8 +27,10 @@ namespace Main.Scripts
         {
             Move();
 
-            if (Row <= BaseRow) enabled = false;
-            // EventBus.OnEnemyReachedBase?.Invoke(this);
+            if (Row > BaseRow) return;
+
+            enabled = false;
+            EventBus.RaiseEnemyReachedBase(this);
         }
 
         public void Init(EnemyData enemyData, BoardGenerator boardGenerator, int column, float startRow)
@@ -57,12 +59,14 @@ namespace Main.Scripts
 
         public void TakeDamage(int amount)
         {
-            if (!IsAlive)
-                return;
+            if (!IsAlive) return;
 
             health -= amount;
-            if (!IsAlive) enabled = false;
-            // EventBus.OnEnemyKilled?.Invoke(this);
+            if (IsAlive) return;
+
+            enabled = false;
+            EventBus.RaiseEnemyKilled(this);
         }
+
     }
 }

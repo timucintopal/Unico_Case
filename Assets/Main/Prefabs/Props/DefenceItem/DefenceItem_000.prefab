@@ -304,6 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678d750445ec94518a3a88027f0559c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Defence
+  bulletPrefab: {fileID: 8781589084131350324, guid: 9fcbd46650e5d497a92ae16f60d193f7, type: 3}
+  muzzle: {fileID: 8311086263906608521}
 --- !u!1 &9037233851568399125
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,11 +18,21 @@ namespace Main.Scripts.Managers
         private void OnEnable()
         {
             EventBus.OnGameStateChanged += HandleGameStateChanged;
+            EventBus.OnEnemyKilled += RemoveEnemy;
+            EventBus.OnEnemyReachedBase += RemoveEnemy;
         }
 
         private void OnDisable()
         {
             EventBus.OnGameStateChanged -= HandleGameStateChanged;
+            EventBus.OnEnemyKilled -= RemoveEnemy;
+            EventBus.OnEnemyReachedBase -= RemoveEnemy;
+        }
+
+        private void RemoveEnemy(Enemy enemy)
+        {
+            enemyRegistry.Remove(enemy);
+            Destroy(enemy.gameObject);
         }
 
         public void Init(BoardGenerator boardGenerator)
