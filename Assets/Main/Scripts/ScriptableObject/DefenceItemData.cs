@@ -1,3 +1,4 @@
+using Main.Scripts;
 using UnityEngine;
 
 public enum AttackDirection
@@ -14,7 +15,7 @@ public class DefenceItemData : ScriptableObject
     [SerializeField] [Min(0.1f)] private float interval = 3f;
     [SerializeField] private AttackDirection direction = AttackDirection.Forward;
 
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private DefenceItem prefab;
     [SerializeField] private Sprite icon;
     [SerializeField] private string name;
 
@@ -22,7 +23,7 @@ public class DefenceItemData : ScriptableObject
     public int Range => range;
     public float Interval => interval;
     public AttackDirection Direction => direction;
-    public GameObject Prefab => prefab;
+    public DefenceItem Prefab => prefab;
     public Sprite Icon => icon;
     public string Name => name;
 }

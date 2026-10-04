@@ -15,6 +15,8 @@ namespace Main.Scripts
         
         public static event Action<Cell> OnCellClicked;
         public static event Action<DefenceItemButton> OnItemSelected;
+        public static event Action<DefenceItemButton> OnItemDragStarted;
+        public static event Action<DefenceItemButton, Cell> OnItemDropped;
 
         public static event Action<Enemy> OnEnemyKilled;
         public static event Action<Enemy> OnEnemyReachedBase;
@@ -39,9 +41,14 @@ namespace Main.Scripts
             OnCellClicked?.Invoke(cell);
         }
 
-        public static void RaiseItemSelected(DefenceItemButton button)
+        public static void RaiseItemDragStarted(DefenceItemButton button)
         {
-            OnItemSelected?.Invoke(button);
+            OnItemDragStarted?.Invoke(button);
+        }
+        
+        public static void RaiseItemDropped(DefenceItemButton button, Cell cell)
+        {
+            OnItemDropped?.Invoke(button,cell);
         }
 
         public static void RaiseEnemyKilled(Enemy enemy)
@@ -52,6 +59,11 @@ namespace Main.Scripts
         public static void RaiseEnemyReachedBase(Enemy enemy)
         {
             OnEnemyReachedBase?.Invoke(enemy);
+        }
+
+        public static void RaiseItemSelected(DefenceItemButton defenceItemButton)
+        {
+            OnItemSelected?.Invoke(defenceItemButton);
         }
     }
 }

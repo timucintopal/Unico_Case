@@ -1,4 +1,5 @@
 using System;
+using Main.Scripts.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,6 +10,10 @@ namespace Main.Scripts.Managers
         [SerializeField] private LayerMask cellLayer;
 
         private Camera mainCamera;
+        private Plane boardPlane = new(Vector3.up, Vector3.zero);
+        
+        [SerializeField] private DefenceItemButton draggedButton;
+        [SerializeField] private DefenceItem preview;
         [SerializeField] private Cell hoveredCell;
 
         private void Awake()
@@ -16,33 +21,75 @@ namespace Main.Scripts.Managers
             mainCamera = Camera.main;
         }
 
-
-        private void Reset()
+        private void OnEnable()
         {
-            SetHoveredCell(null);
+            EventBus.OnItemDragStarted += StartDrag;
         }
         
+        private void OnDisable()
+        {
+            EventBus.OnItemDragStarted -= StartDrag;
+        }
+
         private void Update()
         {
-            var cell = GetCellUnderPointer();
-            SetHoveredCell(cell);
+            if(draggedButton != null)
+                UpdateDrag();
+        }
 
-            if (cell != null && Input.GetMouseButtonDown(0))
-                EventBus.RaiseCellClicked(cell);
+        private void StartDrag(DefenceItemButton button)
+        {
+            draggedButton = button;
+            preview = Instantiate(draggedButton.Data.Prefab);
+            preview.enabled = false;
+            UpdateDrag();
+        }
+
+        private void UpdateDrag()
+        {
+            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            var cell = GetCell(ray);
+
+            SetHoveredCell(cell);
+            MovePreview(ray, cell);
+
+            if (Input.GetMouseButtonUp(0))
+                EndDrag(cell);
         }
         
-        private Cell GetCellUnderPointer()
+        private void EndDrag(Cell cell)
+        {
+            Destroy(preview.gameObject);
+            SetHoveredCell(null);
+
+            if (cell != null)
+                EventBus.RaiseItemDropped(draggedButton, cell);
+
+            draggedButton = null;
+        }
+        
+        private Cell GetCell(Ray ray)
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return null;
-
-            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
             return Physics.Raycast(ray, out var hit, Mathf.Infinity, cellLayer)
                 ? hit.collider.GetComponent<Cell>()
                 : null;
         }
+        
+        private void MovePreview(Ray ray, Cell cell)
+        {
+            if (cell != null && cell.CanPlace)
+                preview.transform.position = cell.transform.position;
+            else if (boardPlane.Raycast(ray, out var distance))
+                preview.transform.position = ray.GetPoint(distance);
+        }
 
+        private void Reset()
+        {
+            SetHoveredCell(null);
+        }
 
         private void SetHoveredCell(Cell cell)
         {

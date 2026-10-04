@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Main.Scripts.UI
 {
-    public class DefenceItemButton : MonoBehaviour
+    public class DefenceItemButton : MonoBehaviour, IPointerDownHandler
     {
         [SerializeField] private Button button;
         [SerializeField] private TextMeshProUGUI text;
@@ -19,6 +20,12 @@ namespace Main.Scripts.UI
             this.count = count;
             button.onClick.AddListener(Select);
             RefreshStatus();
+        }
+        
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (count > 0)
+                EventBus.RaiseItemDragStarted(this);
         }
         
         public void Consume()
@@ -37,5 +44,7 @@ namespace Main.Scripts.UI
             text.text = $"{Data.Name} x{count}";
             button.interactable = count > 0;
         }
+
+        
     }
 }

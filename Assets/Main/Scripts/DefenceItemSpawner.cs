@@ -1,0 +1,37 @@
+using Main.Scripts.UI;
+using UnityEngine;
+
+namespace Main.Scripts
+{
+    public class DefenceItemSpawner : MonoBehaviour
+    {
+        private EnemyRegistry registry;
+
+        private void OnEnable()
+        {
+            EventBus.OnItemDropped += Place;
+        }
+
+        private void OnDisable()
+        {
+            EventBus.OnItemDropped -= Place;
+        }
+
+        public void Init(EnemyRegistry enemyRegistry)
+        {
+            registry = enemyRegistry;
+        }
+
+        private void Place(DefenceItemButton button, Cell cell)
+        {
+            if (!cell.CanPlace) return;
+
+            var data = button.Data;
+            var item = Instantiate(data.Prefab, cell.transform.position, Quaternion.identity, transform);
+            item.Init(data, registry, cell);
+            cell.Occupy();
+
+            button.Consume();
+        }
+    }
+}
