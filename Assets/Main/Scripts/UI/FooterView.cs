@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Main.Scripts.ScriptableObject;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Main.Scripts.UI
     {
         [SerializeField] private Transform buttonParent;
         [SerializeField] private DefenceItemButton buttonPrefab;
+        
+        private readonly List<DefenceItemButton> buttons = new();
 
         private void OnEnable()
         {
@@ -20,11 +23,20 @@ namespace Main.Scripts.UI
 
         private void Build(LevelData level)
         {
-            foreach (Transform child in buttonParent)
-                Destroy(child.gameObject);
+            var entries = level.DefenceItems;
 
-            foreach (var entry in level.DefenceItems)
-                Instantiate(buttonPrefab, buttonParent).Initialize(entry.Item, entry.Count);
+            while (buttons.Count < entries.Count)
+                buttons.Add(Instantiate(buttonPrefab, buttonParent));
+
+            while (buttons.Count > entries.Count)
+            {
+                var last = buttons[^1];
+                buttons.RemoveAt(buttons.Count - 1);
+                Destroy(last.gameObject);
+            }
+
+            for (var i = 0; i < entries.Count; i++)
+                buttons[i].Initialize(entries[i].Item, entries[i].Count);
         }
     }
 }

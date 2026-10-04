@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Main.Scripts.Main.Scripts;
 using UnityEngine;
 
 namespace Main.Scripts
@@ -28,7 +27,7 @@ namespace Main.Scripts
 
             enabled = false;
             EventBus.RaiseEnemyReachedBase(this);
-            // Destroy(gameObject);
+            Destroy(gameObject);
         }
 
         public void Init(EnemyData enemyData, BoardGenerator boardGenerator, int column, float startRow)

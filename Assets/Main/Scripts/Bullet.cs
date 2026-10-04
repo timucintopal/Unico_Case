@@ -4,16 +4,22 @@ namespace Main.Scripts
 {
     public class Bullet : MonoBehaviour
     {
+        [SerializeField] private TrailRenderer trail;
         [SerializeField] private float speed = 15f;
 
         private Enemy target;
         private int damage;
         
+        private void OnEnable()
+        {
+            trail.Clear();
+        }
+        
         private void Update()
         {
             if (target == null || !target.IsAlive)
             {
-                Destroy(gameObject);
+                Pooler.Instance.Release(this);
                 return;
             }
 
@@ -24,7 +30,7 @@ namespace Main.Scripts
             if (transform.position != destination) return;
 
             target.TakeDamage(damage);
-            Destroy(gameObject);
+            Pooler.Instance.Release(this);
         }
         
         public void Init(Enemy enemy, int damageAmount)

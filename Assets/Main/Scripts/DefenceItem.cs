@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Main.Scripts
         [SerializeField] private Bullet bulletPrefab;
         [SerializeField] private Transform muzzle;
         
+        
         private DefenceItemData data;
         private EnemyRegistry registry;
 
@@ -17,7 +19,7 @@ namespace Main.Scripts
         
         private const float RecoilDistance = 0.15f;
         private const float RecoilDuration = 0.08f;
-        
+
         private void OnDestroy()
         {
             muzzle.DOKill();
@@ -32,7 +34,7 @@ namespace Main.Scripts
             if (target == null) return;
 
             timer = 0f;
-            Instantiate(bulletPrefab, muzzle.position, Quaternion.identity).Init(target, data.Damage);
+            Pooler.Instance.Get(bulletPrefab, muzzle.position).Init(target, data.Damage);
             Recoil();
         }
 

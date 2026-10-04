@@ -27,7 +27,7 @@ namespace Main.Scripts
             if (!cell.CanPlace) return;
 
             var data = button.Data;
-            var item = Instantiate(data.Prefab, cell.transform.position, Quaternion.identity, transform);
+            var item = Pooler.Instance.Get(data.Prefab, cell.transform.position);
             item.Init(data, registry, cell);
             cell.Occupy();
 

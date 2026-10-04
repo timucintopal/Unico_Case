@@ -18,7 +18,6 @@ namespace Main.Scripts.UI
         {
             Data = defenceItemData;
             this.count = count;
-            button.onClick.AddListener(Select);
             RefreshStatus();
         }
         
@@ -32,11 +31,6 @@ namespace Main.Scripts.UI
         {
             count--;
             RefreshStatus();
-        }
-
-        private void Select()
-        {
-            EventBus.RaiseItemSelected(this);
         }
 
         private void RefreshStatus()

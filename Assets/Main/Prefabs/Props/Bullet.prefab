@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1cad4139bf44d49a74c6f34162742a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  trail: {fileID: 4473529029082583096}
   speed: 15
 --- !u!1 &2549578651282887027
 GameObject:
