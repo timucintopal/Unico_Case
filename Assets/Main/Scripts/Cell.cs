@@ -22,16 +22,6 @@ namespace Main.Scripts
         
         public int Row { get; private set; }
         public int Column { get; private set; }
-        
-        
-        public Vector3 Position {
-            get
-            {
-                Debug.Log("GET POSITION OF " + gameObject.name); 
-                return transform.position;    
-            }
-            
-        }
 
         private bool _isHovered = false;
 
