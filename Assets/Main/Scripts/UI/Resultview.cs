@@ -10,6 +10,9 @@ namespace Main.Scripts.UI
         [SerializeField] private GameObject panel;
         [SerializeField] private TextMeshProUGUI resultText;
         [SerializeField] private Button menuButton;
+        
+        [SerializeField] private Color successColor;
+        [SerializeField] private Color failColor;
 
         private void Awake()
         {
@@ -32,6 +35,7 @@ namespace Main.Scripts.UI
 
         private void Show(bool won)
         {
+            resultText.color = won ? successColor : failColor;
             resultText.text = won ? Constants.SuccessLabel : Constants.FailLabel;
             panel.SetActive(true);
         }
