@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 namespace Main.Scripts
@@ -12,8 +11,6 @@ namespace Main.Scripts
         private BoardGenerator board;
         private EnemyData data;
         private int health;
-
-        private Vector3 scale;
 
         public int Column { get; private set; }
         public float Row { get; private set; }

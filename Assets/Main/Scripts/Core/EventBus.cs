@@ -11,17 +11,11 @@ namespace Main.Scripts
         public static event Action OnGameStartRequested;
         public static event Action<GameState> OnGameStateChanged;
         public static event Action<LevelData> OnLevelLoaded;
-
-        public static event Action<Cell> OnCellClicked;
-        public static event Action<DefenceItemButton> OnItemSelected;
         public static event Action<DefenceItemButton> OnItemDragStarted;
         public static event Action<DefenceItemButton, Cell> OnItemDropped;
-
         public static event Action<Enemy> OnEnemyKilled;
         public static event Action<Enemy> OnEnemyReachedBase;
-
         public static event Action<bool> OnLevelEnded;
-        
         public static event Action OnMenuRequested;
 
         public static void RaiseGameStartRequested()
@@ -38,12 +32,7 @@ namespace Main.Scripts
         {
             OnLevelLoaded?.Invoke(level);
         }
-
-        public static void RaiseCellClicked(Cell cell)
-        {
-            OnCellClicked?.Invoke(cell);
-        }
-
+        
         public static void RaiseItemDragStarted(DefenceItemButton button)
         {
             OnItemDragStarted?.Invoke(button);
@@ -62,11 +51,6 @@ namespace Main.Scripts
         public static void RaiseEnemyReachedBase(Enemy enemy)
         {
             OnEnemyReachedBase?.Invoke(enemy);
-        }
-
-        public static void RaiseItemSelected(DefenceItemButton defenceItemButton)
-        {
-            OnItemSelected?.Invoke(defenceItemButton);
         }
 
         public static void RaiseLevelEnded(bool won)

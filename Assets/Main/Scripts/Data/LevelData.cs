@@ -21,7 +21,6 @@ namespace Main.Scripts.ScriptableObject
     [CreateAssetMenu(fileName = "Level", menuName = "Board Defence/Level")]
     public class LevelData : UnityEngine.ScriptableObject
     {
-        [SerializeField] private BoardConfig boardConfig;
         [SerializeField] [Min(0.1f)] private float enemySpawnInterval = 2f;
 
         [SerializeField] private List<DefenceItemEntry> defenceItems = new();

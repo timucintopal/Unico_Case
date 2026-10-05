@@ -11,7 +11,6 @@ namespace Main.Scripts.UI
         [SerializeField] private GameObject panel;
         [SerializeField] private TextMeshProUGUI resultText;
         [SerializeField] private Button menuButton;
-        
         [SerializeField] private Color successColor;
         [SerializeField] private Color failColor;
 
