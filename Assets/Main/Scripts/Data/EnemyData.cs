@@ -1,4 +1,5 @@
 using Main.Scripts;
+using Main.Scripts.Enemy;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Enemy", menuName = "Board Defence/Enemy")]

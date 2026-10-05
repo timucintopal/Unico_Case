@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using Main.Scripts.Board;
+using Main.Scripts.Core;
+using Main.Scripts.Enemy;
 using Main.Scripts.UI;
 using UnityEngine;
 
-namespace Main.Scripts
+namespace Main.Scripts.Defence
 {
     public class DefenceItemSpawner : MonoBehaviour
     {

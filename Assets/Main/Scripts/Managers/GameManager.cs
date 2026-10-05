@@ -1,3 +1,5 @@
+using Main.Scripts.Board;
+using Main.Scripts.Core;
 using UnityEngine;
 
 namespace Main.Scripts.Managers

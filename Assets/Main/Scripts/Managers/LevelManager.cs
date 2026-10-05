@@ -1,4 +1,8 @@
-using Main.Scripts.ScriptableObject;
+using Main.Scripts.Board;
+using Main.Scripts.Core;
+using Main.Scripts.Data;
+using Main.Scripts.Defence;
+using Main.Scripts.Enemy;
 using UnityEngine;
 
 namespace Main.Scripts.Managers
@@ -29,7 +33,7 @@ namespace Main.Scripts.Managers
             EventBus.OnEnemyReachedBase -= EnemyReachedBase;
         }
 
-        private void EnemyKilled(Enemy enemy)
+        private void EnemyKilled(Enemy.Enemy enemy)
         {
             enemyRegistry.Remove(enemy);
 
@@ -37,7 +41,7 @@ namespace Main.Scripts.Managers
                 EndLevel(true);
         }
 
-        private void EnemyReachedBase(Enemy enemy)
+        private void EnemyReachedBase(Enemy.Enemy enemy)
         {
             EndLevel(false);
         }

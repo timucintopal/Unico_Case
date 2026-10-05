@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Main.Scripts
+namespace Main.Scripts.Core
 {
     public class Pooler : MonoBehaviour
     {

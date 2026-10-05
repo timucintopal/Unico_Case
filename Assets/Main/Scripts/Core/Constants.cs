@@ -1,4 +1,4 @@
-namespace Main.Scripts
+namespace Main.Scripts.Core
 {
     public static class Constants
     {

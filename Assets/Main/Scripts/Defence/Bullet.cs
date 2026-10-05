@@ -1,13 +1,14 @@
+using Main.Scripts.Core;
 using UnityEngine;
 
-namespace Main.Scripts
+namespace Main.Scripts.Defence
 {
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private TrailRenderer trail;
         [SerializeField] private float speed = 15f;
 
-        private Enemy target;
+        private Enemy.Enemy target;
         private int damage;
 
         private void OnEnable()
@@ -34,7 +35,7 @@ namespace Main.Scripts
             Pooler.Instance.Release(this);
         }
 
-        public void Init(Enemy enemy, int damageAmount)
+        public void Init(Enemy.Enemy enemy, int damageAmount)
         {
             target = enemy;
             damage = damageAmount;

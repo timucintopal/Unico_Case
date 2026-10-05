@@ -1,20 +1,20 @@
 using System.Collections.Generic;
 
-namespace Main.Scripts
+namespace Main.Scripts.Enemy
 {
     public class EnemyRegistry
     {
-        private readonly List<Enemy> enemies = new();
+        private readonly List<Scripts.Enemy.Enemy> enemies = new();
 
-        public IReadOnlyList<Enemy> Enemies => enemies;
+        public IReadOnlyList<Scripts.Enemy.Enemy> Enemies => enemies;
         public int Count => enemies.Count;
 
-        public void Add(Enemy enemy)
+        public void Add(Scripts.Enemy.Enemy enemy)
         {
             enemies.Add(enemy);
         }
 
-        public void Remove(Enemy enemy)
+        public void Remove(Scripts.Enemy.Enemy enemy)
         {
             enemies.Remove(enemy);
         }

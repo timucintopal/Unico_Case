@@ -1,7 +1,11 @@
 using DG.Tweening;
+using Main.Scripts.Board;
+using Main.Scripts.Core;
+using Main.Scripts.Data;
+using Main.Scripts.Enemy;
 using UnityEngine;
 
-namespace Main.Scripts
+namespace Main.Scripts.Defence
 {
     public class DefenceItem : MonoBehaviour
     {
@@ -50,9 +54,9 @@ namespace Main.Scripts
                 muzzle.rotation = Quaternion.identity;
         }
 
-        private Enemy FindTarget()
+        private Enemy.Enemy FindTarget()
         {
-            Enemy closest = null;
+            Enemy.Enemy closest = null;
             var closestDistance = float.MaxValue;
 
             foreach (var enemy in registry.Enemies)
@@ -69,7 +73,7 @@ namespace Main.Scripts
             return closest;
         }
 
-        private bool IsInRange(Enemy enemy)
+        private bool IsInRange(Enemy.Enemy enemy)
         {
             var rowDelta = enemy.Row - row;
             var columnDelta = Mathf.Abs(enemy.Column - column);

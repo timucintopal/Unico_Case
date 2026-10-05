@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Main.Scripts.ScriptableObject
+namespace Main.Scripts.Data
 {
     [CreateAssetMenu(menuName = "Board Defence/Level Catalog")]
     public class LevelCatalog : UnityEngine.ScriptableObject

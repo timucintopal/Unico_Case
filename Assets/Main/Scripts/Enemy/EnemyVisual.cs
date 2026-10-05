@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Main.Scripts
+namespace Main.Scripts.Enemy
 {
     public class EnemyVisual : MonoBehaviour
     {

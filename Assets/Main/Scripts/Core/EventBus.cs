@@ -1,10 +1,10 @@
 using System;
+using Main.Scripts.Board;
+using Main.Scripts.Data;
 using Main.Scripts.Managers;
-using Main.Scripts.ScriptableObject;
 using Main.Scripts.UI;
-using UnityEngine.Events;
 
-namespace Main.Scripts
+namespace Main.Scripts.Core
 {
     public static class EventBus
     {
@@ -13,8 +13,8 @@ namespace Main.Scripts
         public static event Action<LevelData> OnLevelLoaded;
         public static event Action<DefenceItemButton> OnItemDragStarted;
         public static event Action<DefenceItemButton, Cell> OnItemDropped;
-        public static event Action<Enemy> OnEnemyKilled;
-        public static event Action<Enemy> OnEnemyReachedBase;
+        public static event Action<Enemy.Enemy> OnEnemyKilled;
+        public static event Action<Enemy.Enemy> OnEnemyReachedBase;
         public static event Action<bool> OnLevelEnded;
         public static event Action OnMenuRequested;
 
@@ -43,12 +43,12 @@ namespace Main.Scripts
             OnItemDropped?.Invoke(button, cell);
         }
 
-        public static void RaiseEnemyKilled(Enemy enemy)
+        public static void RaiseEnemyKilled(Enemy.Enemy enemy)
         {
             OnEnemyKilled?.Invoke(enemy);
         }
 
-        public static void RaiseEnemyReachedBase(Enemy enemy)
+        public static void RaiseEnemyReachedBase(Enemy.Enemy enemy)
         {
             OnEnemyReachedBase?.Invoke(enemy);
         }

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using Main.Scripts.ScriptableObject;
+using Main.Scripts.Board;
+using Main.Scripts.Data;
 using UnityEngine;
 
-namespace Main.Scripts
+namespace Main.Scripts.Enemy
 {
     public class EnemySpawner : MonoBehaviour
     {

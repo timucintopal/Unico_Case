@@ -1,3 +1,6 @@
+using Main.Scripts.Board;
+using Main.Scripts.Core;
+using Main.Scripts.Defence;
 using Main.Scripts.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;

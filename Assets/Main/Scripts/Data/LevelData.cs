@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Main.Scripts.ScriptableObject
+namespace Main.Scripts.Data
 {
     [Serializable]
     public struct DefenceItemEntry

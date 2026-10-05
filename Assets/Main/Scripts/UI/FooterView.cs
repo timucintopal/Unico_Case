@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using Main.Scripts.ScriptableObject;
+using Main.Scripts.Core;
+using Main.Scripts.Data;
 using UnityEngine;
 
 namespace Main.Scripts.UI

@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+using Main.Scripts.Data;
 using UnityEngine;
 
-namespace Main.Scripts
+namespace Main.Scripts.Board
 {
     public class BoardGenerator : MonoBehaviour
     {
